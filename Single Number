@@ -1,7 +1,11 @@
 # https://leetcode.com/problems/single-number/
+# Concept of XOR:
+# XOR of zero and some bit returns that bit i.e. x^0 = x...
+# XOR of two same bits returns 0 i.e. x^x = 0...
+# And, x^y^x = (x^x)^y = 0^y = y...
+# XOR all bits together to find the unique number.
 
 var singleNumber = function(nums) {
-    if (nums.length < 1) return 0;
     let num = 0;
     
     for (let i = 0; i < nums.length; i++) {
@@ -10,3 +14,5 @@ var singleNumber = function(nums) {
 
     return num;
 };
+
+
