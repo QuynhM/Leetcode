@@ -1,0 +1,54 @@
+# https://leetcode.com/problems/two-sum/description/
+
+
+# O(n^2)
+
+var twoSum = function(nums, target) {
+    let answer=[];
+    for (i=0; i< nums.length - 1; i++){
+        for (j = i + 1; j<nums.length; j++){
+            if (i !==j && nums[i]+nums[j] === target) {
+                answer = [i,j]
+                return answer
+            }
+        }
+    }
+    return answer
+};
+
+
+# O(n)
+Using new Map().
+“Map” is a built-in JavaScript object that stores key-value pairs.
+// map.set(key, value)
+// map.has(key) map.get(key)  
+
+var twoSum = function(nums, target) {
+  const map = new Map();
+  for (let i = 0; i < nums.length - 1; i++) {
+    const remain = target - nums[i];
+
+    if (map.has(remain)) {
+      return [map.get(remain), i];
+    } else {
+         map.set(nums[i], i);
+    }
+  }
+return [];
+}
+
+
+# O(n)
+Convert array to object using fromEntries()
+
+var twoSum = function(nums, target) {
+    const numberObj = Object.fromEntries(nums.map((num, index) => ([num, index])));
+
+    for (let i = 0; i < nums.length; i++) {
+        const missingNumber = target - nums[i];
+        const indexOfMissingNumber = numberObj[missingNumber];
+        if (indexOfMissingNumber !== undefined && indexOfMissingNumber !== i) {
+            return [i, indexOfMissingNumber];
+        }
+    }
+};
