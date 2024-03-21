@@ -1,0 +1,27 @@
+function sumArray(arr) {
+  if (arr.length === 0) {
+    return 0;
+  } else {
+    // Recursive case: Return the first element plus the sum of the rest of the array
+    // When we use arr.slice(1) in recursion, it is to "slice" the arr array and 
+       return a new array starting from the second element (index 1) to the last element of the arr array.
+    
+    return arr[0] + sumArray(arr.slice(1));
+  }
+}
+
+let array = [1,2,3,4,5,6,7,8,9]
+console.log(sumArray(array));
+
+
+function factorial(arr) {
+  if (arr.length === 0) {
+    return 1;
+  } else {
+    let newArr = arr.slice(1)
+    return arr[0] * factorial(newArr);
+  }
+}
+
+let array = [5,4,3,2,1]
+console.log(factorial(array));
