@@ -1,0 +1,51 @@
+# https://leetcode.com/problems/valid-parentheses/
+
+var isValid = function(s) {
+   if (s.length === 0) return true;
+
+   const stack = [];
+
+   const pairs = {
+    '(' : ')',
+    '{' : '}',
+    '[' : ']'
+   }
+
+   for (let i = 0; i < s.length; i++) {
+    const char = s[i];
+
+    if (char in pairs) {
+        stack.push(char);
+    } else if (char === ')' || char === ']' || char === '}') {
+        const top = stack.pop(); // lay element tren cung ra khoi stack va gan cho bien top
+        if (!top || pairs[top] !== char) {
+            return false;
+        }
+    }
+   }
+    return stack.length === 0;
+};
+
+
+// ANSWER 2
+var isValid = function(s) {
+    const stack = [];
+    const parens = '() {} []';
+    let i = 0;
+
+    while (i < s.length) {
+        stack.push(s[i]);
+        i++;
+
+        let open = stack[stack.length - 2];
+        let close = stack[stack.length - 1];
+
+        let potParens = open + close;
+
+        if (parens.includes(potParens)) {
+            stack.pop();
+            stack.pop();
+        }
+    }
+    return stack.length === 0; //stack is empty after pop all the parens out, and then return true
+}
