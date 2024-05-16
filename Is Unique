@@ -1,0 +1,24 @@
+// Implement an algorithm to determine if a string has all unique characters. What if you cannolt use additional data structures?
+
+// O(N^2)
+
+function isUnique(str) {
+  let len = str.length;
+
+  if (len <=0) return false;
+
+  // Outer loop: goes through each character in the string.
+  for (let i = 0; i < len; i++){
+    // Inner loop: compares the current character with all following characters.
+    for (let j = i+1; j < len; j++) {
+      if (str[i] === str[j]) {
+        return false; // If a duplicate character is found, return false.
+      }
+    }
+  }
+return true; // If no duplicates are found, return true
+}
+
+
+
+
