@@ -1,2 +1,3 @@
 # Leetcode
 
+Learn everyday
