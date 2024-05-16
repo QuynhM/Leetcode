@@ -21,10 +21,11 @@ var twoSum = function(nums, target) {
 Using new Map().
 “Map” is a built-in JavaScript object that stores key-value pairs.
 // map.set(key, value)
-// map.has(key) map.get(key)  
+// map.has(key) 
+// map.get(key)  will return the value of the 'key'
 
 var twoSum = function(nums, target) {
-  const map = new Map();
+  const map = new Map(); // key: number, value: index
   for (let i = 0; i < nums.length - 1; i++) {
     const remain = target - nums[i];
 
