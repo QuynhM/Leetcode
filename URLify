@@ -8,7 +8,7 @@ function convertSpace(input, length) {
     if(input[i] === " ") {
       answer += "%20";
     } else {
-      answer += input [i]
+      answer += input[i]
     }
   }
   return answer;
