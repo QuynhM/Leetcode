@@ -1,3 +1,19 @@
 // Write a method to replace all spaces in a string with "%20". You may assume that the string has sufficient 
 space at the end to hold the additional characters, and that you are given the "true" length of the string.
 
+function convertSpace(input, length) {
+  let answer = "";
+
+  for (let i = 0; i < length; i++){
+    if(input[i] === " ") {
+      answer += "%20";
+    } else {
+      answer += input [i]
+    }
+  }
+  return answer;
+}
+
+let input = "Mr John Smith    ";
+let length = 12;
+console.log("Answer:", urlify(input, length))
