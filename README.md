@@ -1,3 +1,3 @@
 # Leetcode
 
-Learn everyday
+Learn everyday!
