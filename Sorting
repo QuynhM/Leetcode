@@ -1,15 +1,42 @@
+# Insertion Sort
+function sortList(arr) {
+  for (let i = 0; i < arr.length; i++) {
+    let current = i;
+    // gets the smallest element and inserts at current index 
+    while (current > 0 && arr[current] < arr[current - 1]) {
+      const temp = arr[current];
+      // swaps current smaller element with the element before it
+      arr[current] = arr[current - 1];
+      arr[current - 1] = temp;
+      current--;
+    }
+  }
+  return arr;
+}
+
+
+
+
 # Bubble Sort
 
 function bubbleSort(arr) {
   for (let i = 0; i < arr.length - 1; i++){
+    // Track whether a swap occurred in this pass
+    let swapped = false;
+
     for (let j = i+1; j < arr.length; j++) {
       if (arr[j] > arr[i] {
-        const swap = arr[j];
+        const temp = arr[j];
         arr[j] = arr[i];
         arr[i] = swap;
+        swapped = temp;
       }
     }
+
+    // If no two elements were swapped, the list is sorted
+    if (!swapped) return arr;
   }
+  return arr;
 }
 
 const myArray = [64, 34, 25, 12, 22, 11, 90];
