@@ -16,3 +16,77 @@ That is, if you optimize the distribution of newspapers, what is the longest rea
 
 SOLUTION:
 
+function isFeasible(newspapers, numCoworkers, maxTime) {
+    let workers = 1;  // at least one worker is needed
+    let currentTime = 0;  
+
+    // iterates through each newspaper's reading time in the newspapers array
+    for (let time of newspapers) {  //
+        if (currentTime + time > maxTime) {
+            workers++;
+            currentTime = time; 
+            
+            if (workers > numCoworkers) return false;
+        } else {
+            currentTime += time;
+        }
+    }
+
+    return true;
+}
+
+function newspapersSplit(newspapers, numCoworkers) {
+    
+    // [7,2,5,10,8], 3
+    // [7],[2,5,10],[8] -> 17
+    // [7,2],[5,10],[8] -> 15
+    // [7,2,5],[10],[8] -> 14
+    
+    
+    // 13 ? [7,2],[5],[10,8] -> No
+    // 18 ? [7,2,5],[10,8],[]
+    // 17 ? [7,2,5], [10], [8]
+    // 16 ? -> Yes
+    // 15 ? -> Yes
+    // 14 ? -> Yes
+    
+    // left, right = max(arr), sum(arr)
+    
+    // if possible:
+    //     right = mid
+    // else:
+    //     left = mid + 1
+    
+    // 1) Binary search if can read in this much time
+    
+    // 2) How to define "can read" given the time
+    // Give all the book such that the total under the time limit for worker 1
+    // Do the rest for all the worker
+    
+    
+    
+    
+    let left = Math.max(...newspapers) // find Max time of newspaper
+    console.log("LEFT:", left)
+    let right = newspapers.reduce((a, b) => a + b, 0);
+    console.log("RIGHT:", right)
+
+    while (left < right) {
+        let mid = Math.floor((left + right) / 2); // 20
+        // console.log("--MID:", mid)
+        // console.log("--LEFT2:", left)
+        
+        if (isFeasible(newspapers, numCoworkers, mid)) {
+            right = mid; 
+        } else {
+            left = mid + 1;
+        }
+    }
+
+    return left;
+}
+
+// Example usage:
+const newspapers = [3, 2, 4, 7, 5, 9, 1];
+const workers = 3;
+console.log(newspapersSplit(newspapers, workers)); // Output the minimum maximum time
