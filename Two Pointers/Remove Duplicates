@@ -1,0 +1,20 @@
+Given a sorted list of numbers, remove duplicates and return the new length. You must do this in-place and without using extra memory.
+
+Input: [0, 0, 1, 1, 1, 2, 2].
+
+Output: 3.
+
+// SOLUTION //
+
+function removeDuplicates(arr) {
+  let slow = 0;
+
+  for (let fast = 0; fast < arr.length; fast++) {
+    if (arr[fast] != arr[slow]) {
+      slow++
+      arr[slow] = arr[fast];
+    }
+  }
+// return new length of arr with all unique number
+return slow + 1;
+}
