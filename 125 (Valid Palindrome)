@@ -1,0 +1,25 @@
+https://leetcode.com/problems/valid-palindrome/description/
+
+var isPalindrome = function(s) {
+    let alnum = "abcdefghijklmnopqrstuvwxyz1234567890"
+    let newString = "";
+
+    for (let char of s.toLowerCase()) {
+        if(alnum.includes(char)) {
+            newString += char;
+        }
+    }
+
+    let left = 0;
+    let right = newString.length - 1;
+
+    while (left < right) {
+        if(newString[left] !== newString[right]) {
+            return false;
+        };
+
+        left++;
+        right--
+    }
+    return true;
+};
