@@ -1,0 +1,98 @@
+// function findAllAnagrams(s, check) {
+    
+//     // 1. Create a hash map to store the frequency of characters in the check string
+//     // 1. Tạo một hash map để lưu trữ tần số của các ký tự trong chuỗi kiểm tra
+//     let map = {};
+    
+//     // 2. Populate the hash map with the frequency of characters in the check string
+//     // 2. Điền vào hash map với tần số của các ký tự trong chuỗi kiểm tra
+//     for (let c of check) {
+//         map[c] = (map[c] || 0) + 1;
+//     }
+    
+//     // 3. Initialize pointers and other variables
+//     // 3. Khởi tạo các con trỏ và các biến khác
+//     let r = 0, l = 0, count = 0;
+//     let res = [];
+    
+//     // 4. Slide the window across the original string
+//     // 4. Trượt cửa sổ qua chuỗi gốc
+//     while (r < s.length) {
+//         // 5. If the character at the right pointer is in the hash map and its count is greater than 0
+//         // 5. Nếu ký tự tại con trỏ phải có trong hash map và tần số của nó lớn hơn 0
+//         if (map[s[r]] > 0)  {
+//             count++;
+//         }
+//         // 6. Decrease the frequency of the character at the right pointer in the hash map
+//         // 6. Giảm tần số của ký tự tại con trỏ phải trong hash map
+//         map[s[r]]--;
+//         // 7. Move the right pointer to the right
+//         // 7. Di chuyển con trỏ phải sang phải
+//         r++;
+        
+//         // 8. If the count of matched characters equals the length of the check string
+//         // 8. Nếu số lượng ký tự khớp bằng chiều dài của chuỗi kiểm tra
+//         if (count === check.length) {
+//             res.push(l); // 9. Add the starting index to the result
+//             // 9. Thêm chỉ mục bắt đầu vào kết quả
+//         }
+        
+//         // 10. If the window size equals the length of the check string
+//         // 10. Nếu kích thước cửa sổ bằng chiều dài của chuỗi kiểm tra
+//         if (r - l == check.length) {
+//             // 11. If the character at the left pointer is in the hash map and its count is greater than or equal to 0
+//             // 11. Nếu ký tự tại con trỏ trái có trong hash map và tần số của nó lớn hơn hoặc bằng 0
+//             if (map[s[l]] >= 0) {
+//                 count--; // 12. Decrease the count of matched characters
+//                 // 12. Giảm số lượng ký tự khớp
+//             }
+//             // 13. Increase the frequency of the character at the left pointer in the hash map
+//             // 13. Tăng tần số của ký tự tại con trỏ trái trong hash map
+//             map[s[l]]++;
+//             // 14. Move the left pointer to the right
+//             // 14. Di chuyển con trỏ trái sang phải
+//             l++;
+//         }
+//     }
+//     return res; // 15. Return the result array
+//     // 15. Trả về mảng kết quả
+// }
+
+
+function findAllAnagrams(s, check) {
+    let map = {};
+    
+    for (let c of check) {
+        map[c] = (map[c] || 0) + 1;
+    };
+    
+    let r = 0, l = 0, count = 0;
+    let res = new Array()
+    
+    while (r < s.length) {
+        if (map[s[r]] > 0)  {
+            count++;
+        }
+        console.log("Count:", count)
+        map[s[r]]--;
+        r++;
+        
+        if (count === check.length) {
+            res.push(l);
+        }
+        if (r - l == check.length) {
+            if (map[s[l]] >= 0) {
+                count--;
+                console.log("Count2:", count)
+            }
+            map[s[l]]++;
+            l++
+        }
+    }
+    return res;
+}
+
+
+let original = "cbaebabacd";
+let check = "abc";
+console.log(findAllAnagrams(original, check)); // Output: [0, 6]
