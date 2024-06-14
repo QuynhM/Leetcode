@@ -1,0 +1,28 @@
+// https://leetcode.com/problems/minimum-increment-to-make-array-unique/description/?envType=daily-question&envId=2024-06-14
+
+var minIncrementForUnique = function(nums) {
+    //sort nums
+    nums.sort((a,b) => a - b);
+    
+    let moves = 0; 
+    
+    // SOLUTION 1:
+    for (let i = 1; i < nums.length; i++) {
+        if (nums[i] <= nums[i - 1]) {
+            let increment = nums[i-1] - nums[i] + 1;
+            nums[i] += increment;
+            moves += increment
+        }
+    }
+
+    // SOLUTION 2:
+    let numTracker = 0;
+
+    for (let num of nums) {
+        numTracker = Math.max(numTracker, num);
+        moves += numTracker - num;
+        numTracker++;
+    }
+    
+    return moves;
+};
