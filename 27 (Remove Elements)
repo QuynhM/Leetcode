@@ -1,0 +1,31 @@
+https://leetcode.com/problems/remove-element/description/
+
+var removeElement = function(nums, val) {
+  let k = 0;
+  let l = 0;
+  let r = nums.length - 1;
+
+  // [0, 1, 2, 2, 3, 0, 4, 2], nums[l] = 0, nums[r] = 2
+  // nums[l] khac val so move left++, also k++ (k is the length of array that doesnt have val)
+  // l = 1, r = 7, k = 1
+  // nums[l] = 1 l = 1 still different than 2 so repeat the step above
+  // l = 2, r = 7, k = 2
+  // nums[l] = 2 l = 2 is different than val so swap with nums[r] to push that number to the end
+  // move r pointer r--
+  // l = 2, r = 6, k = 2
+  // [0, 1, 2, 2, 3, 0, 4, 2]
+  // nothing change with the array bc nums[l] and nums[r] has the same number but right pointer now change to 6 which is number 4 now, so if we repeat the step above nums[l] will be 4 and nums[r] will be 2
+  // [0, 1, 4, 2, 3, 0, 2, 2]
+
+
+  while (l <= r) {
+    if (nums[l] == val) {
+        [nums[l], nums[r]] = [nums[r], nums[l]];
+        r--;
+    } else {
+        l++;
+        k++
+    }
+  }   
+  return k;
+};
