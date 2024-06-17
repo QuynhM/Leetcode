@@ -1,0 +1,44 @@
+Recall finding the largest size k subarray sum of an integer array in Largest Subarray Sum. 
+What if we don't need the largest sum among all subarrays of fixed size k, but instead,
+we want to find the length of the longest subarray with sum smaller than or equal to a target?
+
+Given input nums = [1, 6, 3, 1, 2, 4, 5] and target = 10, then the longest subarray that does not exceed 10 
+is [3, 1, 2, 4], so the output is 4 (length of [3, 1, 2, 4]).
+
+
+// SOLUTION //
+
+function subarraySumLongest(nums, target) {
+    let windowSum = 0;
+    let left = 0;
+    let subLength = 0;
+    
+    // [1, 6, 3, 1, 2, 4, 5]
+    // nums[right] = nums[0] = 1
+    // windowSum = 0 + 1 = 1
+    // subLength = 1
+    // right++ => nums[right] = 6
+    // windowSum = 1 + 6 = 7
+    // subLength = Math.max(1,(1-1+1 = 2) = 2;
+    // windowSum = 7 + 3 = 10
+    // ...
+    // windowSum = 10 + 1 = 11 > target
+    // fall into the > target loop
+    // have to remove the first one to be able to add the next number to check if that new Subarray is better than the old one or not
+    // windowSum = 10 - 1 = 9
+    
+    for (let right = 0; right < nums.length; right++) {
+        windowSum = windowSum + nums[right];
+        while (windowSum > target) {
+            windowSum = windowSum - nums[left];
+            left++;
+        };
+        subLength = Math.max(subLength, right - left + 1)
+    }
+    
+    return subLength;
+}
+
+let nums = [1, 6, 3, 1, 2, 4, 5];
+let target = 10;
+console.log(subarraySumLongest(nums, target)); 
