@@ -1,0 +1,18 @@
+https://leetcode.com/problems/sum-of-square-numbers/description/?envType=daily-question&envId=2024-06-17
+
+var judgeSquareSum = function(c) {
+    let a = 0;
+    let b = Math.floor(Math.sqrt(c));
+
+    while (a <= b) {
+        let sumOfSquare = a*a + b*b;
+        if (sumOfSquare == c) {
+            return true;
+        } else if (sumOfSquare < c) {
+            a++
+        } else {
+            b--
+        }
+    }
+    return false;
+};
