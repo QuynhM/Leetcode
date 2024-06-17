@@ -1,6 +1,14 @@
 https://leetcode.com/problems/sum-of-square-numbers/description/?envType=daily-question&envId=2024-06-17
 
 var judgeSquareSum = function(c) {
+// Initialize two pointers, a starting from 0 and b starting from the integer square root of c.
+// Calculate the sum of squares of a and b.
+// If the sum equals c, return True.
+// If the sum is less than c, increment a.
+// If the sum is greater than c, decrement b.
+// Repeat steps 2-5 until a exceeds b.
+// If no such pair is found, return False.
+
     let a = 0;
     let b = Math.floor(Math.sqrt(c));
 
@@ -16,3 +24,6 @@ var judgeSquareSum = function(c) {
     }
     return false;
 };
+
+let c = 3;
+console.log(judgeSquareSum(c))
