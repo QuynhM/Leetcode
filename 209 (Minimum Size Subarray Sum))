@@ -1,0 +1,25 @@
+https://leetcode.com/problems/minimum-size-subarray-sum/description/
+
+var minSubArrayLen = function(target, nums) {
+    let windowSum = 0;
+    let left = 0;
+    let minLength = nums.length + 1; // Initialize to a value greater than any possible subarray length
+
+    for (let right = 0; right < nums.length; right++) {
+        windowSum += nums[right];
+
+        while (windowSum >= target) {
+            minLength = Math.min(minLength, right - left + 1);
+            windowSum -= nums[left];
+            left++;
+        }
+    }
+
+    // If minLength was not updated, return 0 indicating no valid subarray was found
+    return minLength === nums.length + 1 ? 0 : minLength;
+};
+
+// Example usage
+let nums = [1, 4, 1, 7, 3, 0, 2, 5];
+let target = 10;
+console.log(minSubArrayLen(target, nums));  // Output: 2209
