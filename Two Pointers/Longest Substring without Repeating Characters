@@ -9,6 +9,11 @@ Explanation: The longest substrings are abc and cab, both of length 3.
 Input: aaaabaaa
 
 // SOLUTION //
+- Initialize two pointers, left and right, both starting at the beginning of the string.
+- Use a set to keep track of characters in the current window.
+- Expand the right pointer to add characters to the window until a duplicate is found.
+- When a duplicate is found, move the left pointer to shrink the window until the duplicate is removed.
+- Keep track of the maximum length of the window throughout the process.
 
 function longestSubstringWithoutRepeatingCharacters(s) {
     let charSet = new Set();
