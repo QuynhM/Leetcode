@@ -1,0 +1,39 @@
+A bunch of cards is laid out in front of you in a line, where the value of each card ranges from 0 to 10^6.
+A pair of cards is matching if they have the same number value.
+
+Given a list of integers cards, your goal is to match a pair of cards, but you can only pick up cards in a consecutive
+manner. What's the minimum number of cards that you need to pick up to make a pair? If there are no matching pairs, 
+return -1.
+
+For example, given cards = [3, 4, 2, 3, 4, 7], then picking up [3, 4, 2, 3] makes a pair of 3s and picking up 
+[4, 2, 3, 4] matches two 4s. We need 4 consecutive cards to match a pair of 3s and 4 consecutive cards to match 4s,
+so you need to pick up at least 4 cards to make a match.
+
+
+// SOLUTION //
+
+
+function leastConsecutiveCardsToMatch(cards) {
+    let window = new Map();
+    let left = 0;
+    let length = cards.length + 1; // Initialize to a value greater than any possible subarray length
+    
+    for (let right = 0; right < cards.length; right++) {
+        window.set(cards[right], (window.get(cards[right]) || 0) + 1);
+         // When a duplicate is found
+        while (window.get(cards[right]) === 2) {
+            // Update the length of the current valid window
+            length = Math.min(length, right - left + 1);
+            // Shrink the window from the left
+            window.set(cards[left], window.get(cards[left]) - 1);
+            if (window.get(cards[left]) === 0) {
+                window.delete(cards[left]);
+            }
+            left++;
+        }
+    }
+    // Return -1 if no such subarray is found, otherwise return the length
+    return length === cards.length + 1 ? -1 : length;
+}
+let cards = [3, 4, 2, 3, 4, 7]
+console.log(leastConsecutiveCardsToMatch(cards))
