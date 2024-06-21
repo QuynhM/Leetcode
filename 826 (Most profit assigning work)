@@ -1,0 +1,33 @@
+https://leetcode.com/problems/most-profit-assigning-work/description/?envType=daily-question&envId=2024-06-18
+
+var maxProfitAssignment = function(difficulty, profit, worker) {
+    // create jobs array where each object contains both the difficulty and profit
+    let jobs = [];
+    for (let i = 0; i < difficulty.length; i++) {
+      jobs.push({difficulty: difficulty[i], profit: profit[i]});
+    }
+
+    // Sort jobs by difficulty
+    jobs.sort((a, b) => a.difficulty - b.difficulty);
+
+    // Sort workers by their ability
+    worker.sort((a, b) => a - b);
+
+    let maxProfit = 0;
+    let jobIndex = 0;
+    let currentMaxProfit = 0;
+
+    for (let i = 0; i < worker.length; i++) {
+      while (jobIndex < jobs.length && worker[i] >= jobs[jobIndex].difficulty) {
+        currentMaxProfit = Math.max(currentMaxProfit, jobs[jobIndex].profit);
+        jobIndex++;
+      }
+      maxProfit += currentMaxProfit;
+    }
+    return maxProfit;
+}
+
+difficulty = [5, 9, 2];
+profit = [25, 10, 5];
+worker = [7, 3, 6];
+console.log(maxProfitAssignment(difficulty, profit, worker)); 
