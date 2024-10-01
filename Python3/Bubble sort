@@ -1,0 +1,17 @@
+def sorting(nums):
+  # Go through the list once per element
+  # i represents the number of elements that are already sorted (corrected position)
+  
+  for i in range(len(nums)):
+    for j in range(len(nums) - i - 1):
+      if nums[j] > nums[j+1]:
+        nums[j], nums[j+1] = nums[j+1], nums[j]
+        
+  return nums
+
+# Corrected usage
+nums = [3,8,1,9,2]
+
+
+# Call the twoSum function and print the result
+print(sorting(nums))
