@@ -1,0 +1,20 @@
+from typing import List
+
+def twoSum(nums: List[int], target: int) -> List[int]:
+    h = {}
+    # Build the dictionary with element values as keys and their indices as values
+    for i in range(len(nums)):
+        h[nums[i]] = i
+
+    # Iterate through the list to find the complement for each element
+    for i in range(len(nums)):
+        y = target - nums[i]
+        if y in h and h[y] != i:
+            return [i, h[y]]
+
+# Corrected usage
+nums = [2, 7, 11, 15]
+target = 9
+
+# Call the twoSum function and print the result
+print(twoSum(nums, target))
