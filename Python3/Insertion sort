@@ -1,0 +1,15 @@
+def sorting(nums):
+    for i in range(len(nums)):
+        current = i
+        # gets the smallest element and inserts it at current index
+        while current > 0 and nums[current] < nums[current - 1]:
+            # swaps current smaller element with the element before it
+            nums[current], nums[current - 1] = nums[current - 1], nums[current]
+            current -= 1
+    return nums
+
+# Corrected usage
+nums = [3, 8, 1, 9, 2]
+
+# Call the sorting function and print the result
+print(sorting(nums))
