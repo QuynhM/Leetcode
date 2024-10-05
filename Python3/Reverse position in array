@@ -1,0 +1,12 @@
+def swap(arr):
+  n = len(arr)
+  for i in range(n//2):
+    arr[i], arr[n - i - 1] = arr[n - i - 1], arr[i] 
+
+  return arr
+  
+# Corrected usage
+nums = [3,8,1,9,2]
+
+# Call the twoSum function and print the result
+print(swap(nums))
