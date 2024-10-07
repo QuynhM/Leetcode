@@ -1,0 +1,24 @@
+def integer_square_root(n: int) -> int:
+    if n < 2:  # Handle the case where n is 0 or 1
+        return n
+    
+    left = 1
+    right = n
+    res = 0
+    
+    while left <= right:
+        mid = (left + right) // 2
+        
+        if mid * mid == n:  # Found exact square root
+            return mid
+        elif mid * mid < n:  # Square of mid is less than n
+            res = mid  # Mid could be the answer, store it
+            left = mid + 1  # Search the right half
+        else:
+            right = mid - 1  # Search the left half
+    
+    return res  # Return the largest mid whose square is <= n
+
+
+print(integer_square_root(16))  # Output: 4
+print(integer_square_root(8))   # Output: 2 (since the square root of 8 is around 2.828 and we return the integer part)
