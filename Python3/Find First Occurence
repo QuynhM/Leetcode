@@ -1,0 +1,23 @@
+def find_first_occurrence(arr, target):
+    start = 0
+    end = len(arr) - 1
+    result = -1
+    
+    while start <= end:
+        mid = (start + end) // 2
+        
+        if arr[mid] == target:
+            # Update result to the current mid, but keep searching in the left half
+            result = mid
+            end = mid - 1  # Continue searching the left side for the first occurrence
+        elif arr[mid] < target:
+            start = mid + 1  # Move to the right half
+        else:
+            end = mid - 1  # Move to the left half
+    
+    return result
+
+arr = [1, 2, 4, 4, 4, 5, 6]
+target = 4
+print(find_first_occurrence(arr, target))  # Output: 2
+
