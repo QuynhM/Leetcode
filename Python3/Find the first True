@@ -1,0 +1,21 @@
+def find_boundary(arr):
+    start = 0
+    end = len(arr) - 1  # Search through the entire array
+
+    while start <= end:
+        mid = (start + end) // 2
+
+        if arr[mid] == True:
+            # Ensure mid is not the first element before checking arr[mid - 1]
+            if mid == 0 or arr[mid - 1] == False:
+                return mid  # This is the boundary
+            else:
+                end = mid - 1  # Look on the left side
+        else:
+            start = mid + 1  # Look on the right side
+
+    return -1  # No boundary found
+
+# Example usage
+arr = [False, False, False, True, True, True]
+print(find_boundary(arr))  # Output: 3
