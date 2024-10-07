@@ -1,0 +1,21 @@
+def binary_search(arr, target):
+    start = 0
+    end = len(arr) - 1
+    
+    while start <= end:
+        mid = (start + end) // 2  
+
+        if arr[mid] == target:
+            return mid
+        elif arr[mid] < target:
+            start = mid + 1  # Move to the right half
+        else:
+            end = mid - 1  # Move to the left half
+
+    return -1  # If the target is not found
+
+# Corrected usage
+arr = [0, 2, 5, 6, 9, 10, 14]
+target = 10
+# Call the binary_search function and print the result
+print(binary_search(arr, target))
