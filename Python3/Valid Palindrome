@@ -1,0 +1,25 @@
+def is_palindrome(s: str) -> bool:
+    left, right = 0, len(s) - 1
+    
+    while left < right:
+        # Move the left pointer forward if it's not alphanumeric
+        while left < right and not s[left].isalnum():
+            left += 1
+        # Move the right pointer backward if it's not alphanumeric
+        while left < right and not s[right].isalnum():
+            right -= 1
+        
+        # Compare the characters at the left and right pointers (ignoring case)
+        if s[left].lower() != s[right].lower():
+            return False
+        
+        # Move both pointers inward
+        left += 1
+        right -= 1
+    
+    return True
+
+# Test cases
+print(is_palindrome("Do geese see God?"))  # Output: True
+print(is_palindrome("Was it a car or a cat I saw?"))  # Output: True
+print(is_palindrome("A brown fox jumping over"))  # Output: False
