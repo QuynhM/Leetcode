@@ -6,12 +6,14 @@ def subarray_sum_fixed(nums, k):
         current_sum += nums[i]
     max_sum = current_sum
     
-    for i in range(k, len(nums)):
-        current_sum += nums[i] - nums[i - k]
+    for right in range(k, len(nums)):
+        left = right - k
+        current_sum += nums[right] - nums[left]
         max_sum = max(max_sum, current_sum)
     
-    return max_sum
-    
+    return max_sum/k
+
+
 arr = [1,8,6,2,5,4,8,3,7]
 k = 3
 print(subarray_sum_fixed(arr, k))
