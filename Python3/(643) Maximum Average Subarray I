@@ -7,6 +7,9 @@ def subarray_sum_fixed(nums, k):
     max_sum = current_sum
     
     for right in range(k, len(nums)):
+        # Update the sum by removing the element going out of the window (left)
+        # and adding the new element coming into the window (right)
+
         left = right - k
         current_sum += nums[right] - nums[left]
         max_sum = max(max_sum, current_sum)
