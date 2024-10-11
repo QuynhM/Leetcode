@@ -1,0 +1,21 @@
+
+def longest_substring_without_repeating_characters(s: str) -> int:
+    charSet = set()  # A set to store the unique characters in the current sliding window
+    l = 0  # Left pointer of the sliding window
+    res = 0  # Variable to store the length of the longest substring found
+
+    # Iterate over the string using 'r' as the right pointer of the sliding window
+    for r in range(len(s)):
+        # If the character at the 'r' pointer already exists in the set (repeated character),
+        # we need to shrink the window from the left side to remove the duplicate
+        while s[r] in charSet:
+            charSet.remove(s[l])  # Remove the character at the 'l' pointer from the set
+            l += 1  # Move the left pointer to the right
+
+        # Add the current character at 'r' pointer to the set
+        charSet.add(s[r])
+        
+        # Update the result with the maximum length of the current window (r - l + 1)
+        res = max(res, r - l + 1)
+
+    return res  # Return the length of the longest substring without repeating characters
