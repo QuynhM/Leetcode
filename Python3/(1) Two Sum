@@ -12,9 +12,8 @@ def twoSum(nums: List[int], target: int) -> List[int]:
         if y in h and h[y] != i:
             return [i, h[y]]
 
-# Corrected usage
+
 nums = [2, 7, 11, 15]
 target = 9
 
-# Call the twoSum function and print the result
 print(twoSum(nums, target))
