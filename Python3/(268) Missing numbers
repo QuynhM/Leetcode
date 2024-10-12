@@ -1,0 +1,32 @@
+ def missingNumber(self, nums: List[int]) -> int:
+        # 1:
+        # sorted_nums = sorted(nums)
+        
+        # slow = 0
+
+        # if sorted_nums[slow] != 0:
+        #     return 0
+
+        # for fast in range(1,len(sorted_nums)):
+        #     if sorted_nums[fast] != sorted_nums[slow] + 1:
+        #         return sorted_nums[slow] + 1
+        #     else: 
+        #         slow +=1
+        
+        # return len(sorted_nums)
+
+        # time: O(n log n)
+        # space: O(1)
+
+
+        # 2:
+        # return list(set(range(len(nums) + 1)) - set(nums))[0] 
+        #time: O(n)
+        #space: O(n)
+
+
+         # 3:
+        n = len(nums)
+        return (n * (n+1) // 2) - sum(nums)
+        #time: O(n)
+        #space: O(1)
