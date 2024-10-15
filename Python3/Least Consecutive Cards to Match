@@ -1,0 +1,18 @@
+   def minimumCardPickup(self, cards: List[int]) -> int:
+        last_seen = {}
+        min_len = float('inf')
+        res = -1
+
+        for i in range(len(cards)):
+            if cards[i] in last_seen:
+                distance = i - last_seen[cards[i]] + 1
+                min_len = min(min_len, distance)
+                res = min_len
+
+            last_seen[cards[i]] = i
+        
+        return res
+
+        
+        # # If min_len was updated, return it; otherwise, return -1 if no matching cards were found
+        # return min_len if min_len != float('inf') else -1
