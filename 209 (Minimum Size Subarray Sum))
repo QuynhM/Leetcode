@@ -19,6 +19,7 @@ var minSubArrayLen = function(target, nums) {
     return minLength === nums.length + 1 ? 0 : minLength;
 };
 
+
 // Example usage
 let nums = [1, 4, 1, 7, 3, 0, 2, 5];
 let target = 10;
