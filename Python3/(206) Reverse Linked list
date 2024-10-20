@@ -1,0 +1,11 @@
+   def reverseList(self, head: Optional[ListNode]) -> Optional[ListNode]:
+        cur = head # cur will traverse the list starting from the head
+        prev = None # prev will keep track of the previous node (initially None)
+
+        while cur:
+            temp = cur.next # Temporarily store the next node (to avoid losing the rest of the list)
+            cur.next = prev # Reverse the current node's pointer to point to the previous node
+            prev = cur # Move 'prev' to the current node (it will become the new "previous" in the next iteration)            
+            cur = temp # Move 'cur' to the next node in the original list
+        
+        return prev
