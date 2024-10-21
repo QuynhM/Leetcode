@@ -1,0 +1,11 @@
+function findMax(arr) {
+  let max = arr[0];  // Start by assuming the first element is the max
+  for (let i = 1; i < arr.length; i++) {  // Start from the second element
+    if (arr[i] > max) {
+      max = arr[i];  // Update max if current element is larger
+    }
+  }
+  return max;
+}
+
+console.log(findMax([1, 2, 3, 4, 5])); // Output: 5
