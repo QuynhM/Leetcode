@@ -1,0 +1,20 @@
+function removeDuplicates(nums) {
+    let slow = 0;
+
+    for (let fast = 0; fast < nums.length; fast++) {
+        if (nums[fast] !== nums[slow]) {
+            slow++
+            nums[slow] = nums[fast];
+        }
+    }
+    return nums.slice(0, slow + 1)
+}
+console.log(removeDuplicates([1, 2, 2, 3, 4, 4, 5])); // Output: [1, 2, 3, 4, 5]
+
+
+// Use Set to remove all duplicates
+// Set is only unique element
+
+function removeDuplicates(arr) {
+  return [...new Set(arr)];
+}
