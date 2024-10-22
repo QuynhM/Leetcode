@@ -1,0 +1,44 @@
+function ArrayChallenge(arr) {
+  let checkArithmetic = arr[1] - arr[0]; // Check for arithmetic
+  let checkGeometric = arr[1] / arr[0];  // Check for geometric
+
+  // Check if the array is arithmetic
+  function isArithmetic(arr) {
+    for (let i = 1; i < arr.length - 1; i++) { // Loop up to length-1 to avoid out of bounds
+      if (arr[i + 1] - arr[i] !== checkArithmetic) {
+        return false;
+      }
+    }
+    return true;
+  }
+
+  // Check if the array is geometric
+  function isGeometric(arr) {
+    for (let i = 1; i < arr.length - 1; i++) { // Loop up to length-1 to avoid out of bounds
+      if (arr[i + 1] / arr[i] !== checkGeometric) {
+        return false;
+      }
+    }
+    return true;
+  }
+
+  // Check which sequence it follows
+  if (isArithmetic(arr)) {
+    return "Arithmetic";
+  } else if (isGeometric(arr)) {
+    return "Geometric";
+  } else {
+    return -1; // Neither pattern
+  }
+}
+
+
+// 
+Time Complexity:
+O(n): The function checks the arithmetic and geometric conditions separately. 
+Each of these checks iterates through the array once, so the overall time complexity 
+remains linear relative to the size of the input array.
+
+Space Complexity:
+O(1): the function uses a constant amount of additional 
+space (mainly variables) regardless of the input size.
