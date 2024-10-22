@@ -9,3 +9,15 @@ var thirdMax = function(nums) {
         return uniqueNums[2]
     }
 };
+// O(n log n) for time
+// O(n) for space
+
+
+
+// chach O(n) for time:
+
+function secondLargest(arr) {
+  let max = Math.max(...arr);
+  arr = arr.filter(num => num !== max);
+  return Math.max(...arr);
+}
