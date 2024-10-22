@@ -1,0 +1,11 @@
+var thirdMax = function(nums) {
+    let uniqueNums = [...new Set(nums)]
+    uniqueNums.sort((a,b) => b -a) // descending order
+    let n = uniqueNums.length
+
+    if (n < 3){
+        return uniqueNums[0]
+    } else {
+        return uniqueNums[2]
+    }
+};
