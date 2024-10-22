@@ -1,0 +1,16 @@
+var fibGenerator = function*() {
+    let current = 0; // The first number in the Fibonacci sequence
+    let next = 1;    // The second number in the Fibonacci sequence
+
+    while (true) {   // Infinite loop to keep generating Fibonacci numbers
+        yield current; // Yield the current Fibonacci number
+        [current, next] = [next, current + next]; // Update the current and next values
+    }
+};
+
+
+/**
+ * const gen = fibGenerator();
+ * gen.next().value; // 0
+ * gen.next().value; // 1
+ */
