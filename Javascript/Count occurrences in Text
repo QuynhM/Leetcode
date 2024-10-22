@@ -1,0 +1,25 @@
+function countOccurrences(str, char) {
+    const cleanedText = str.toLowerCase();
+    const words = cleanedText.split("");
+    let count = 0;
+    
+
+    for (let word of words) {
+        if (word === char) {  
+            count++;
+        }
+    }
+    
+    return count;
+}
+console.log(countOccurrences("hello world", "o")); // Output: 2
+
+
+// Cach Ngan Gon
+// using the character char as the delimiter
+
+function countOccurrences(str, char) {
+  let res = str.split(char);  // Split the string by the character
+  console.log(res);           // Log the resulting array of substrings
+  return res.length - 1;      // Return the number of occurrences
+}
