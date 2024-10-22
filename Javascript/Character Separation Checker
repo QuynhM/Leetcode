@@ -1,0 +1,21 @@
+function StringChallenge(str) { 
+  // Loop through the string to check for 'a' and 'b' separated by exactly 3 places
+  for (let i = 0; i < str.length; i++) {
+    if (str[i] === 'a' && str[i + 4] === 'b') {
+      return "true"; // Return "true" if condition is met
+    } else if (str[i] === 'b' && str[i + 4] === 'a') {
+      return "true"; // Also check if 'b' comes before 'a' with 3 characters in between
+    }
+  }
+  return "false"; // Return "false" if the condition isn't met
+}
+
+
+//
+Time Complexity:
+O(n): The function iterates through each character in the string str only once. 
+In the worst case, it goes through all characters in the string.
+
+Space Complexity:
+O(1): The function uses a constant amount of space (only a few variables) 
+regardless of the size of the input string.
