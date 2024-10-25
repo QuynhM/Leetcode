@@ -1,0 +1,35 @@
+function sherlockAndAnagrams(s) {
+    let map = new Map();
+    let count = 0;
+
+    for (let i = 0; i < s.length; i++) {
+        for (let j = i + 1; j <= s.length; j++){
+            // Get substring and sort it to check for anagrams
+            let substr = s.slice(i, j).split("").sort().join("");
+
+            // Count occurrences of each sorted substring in the map
+            if (map.has(substr)) {
+                count += map.get(substr); // Add current count of anagram pairs
+                map.set(substr, map.get(substr) + 1);
+            } else {
+                map.set(substr, 1)
+            }
+        }
+    }
+
+    return count;
+}
+
+let s = "kkkk";
+console.log(sherlockAndAnagrams(s))
+
+// Time Complexity:
+- Nested loops to generate all possible substring = O(n2)
+- Sorting Each Substring, we sort its characters, which takes O(m log m) where m is the length of the substring
+
+=> O(n2) * O(n log n) => O(n3 log n)
+
+// Space Complexity:
+- Map storage: We store each substring in the map. In the worst case, all substrings are unique when sorted,
+               the map could contain up to O(n2) entries.
+=> O(n2) 
