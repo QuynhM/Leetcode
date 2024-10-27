@@ -1,0 +1,49 @@
+var addTwoNumbers = function(l1, l2) {
+// Sample:
+// l1 = 2->4->3
+// l2 = 5->6->4
+// output = 7->0->8
+
+// 1st Iteration: total = 2 + 5 + 0 = 7 (no carry)
+// 2nd Iteration: total = 4 + 6 + 0 = 10 (carry 1, node value 0)
+// 3rd Iteration: total = 3 + 4 + 1 = 8 (no carry)
+
+// 7 -> 0 -> 8
+
+
+    let res = new ListNode(0);
+    let current = res; // pointer
+    let carry = 0;  // it will store any overflow from each addition that equal or greater than 10
+
+    // As long as l1 or l2, or carry has more nodes
+    while (l1 || l2 || carry) {
+        // Get values from l1 and l2, or 0 if the current node is null
+        let val1 = l1 ? l1.val : 0;
+        let val2 = l2 ? l2.val : 0;
+
+        // Sum the current values and the carry
+        let total = val1 + val2 + carry;
+
+        carry = Math.floor(total / 10);  // Update carry
+
+        current.next = new ListNode(total % 10);  // 7%10 = 7, 10 % 10 = 0, 8 % 10 = 8.
+        // So we can keep the last number and remove number 1 if total is > 10 
+
+        // Move to the next nodes
+        current = current.next;
+        if (l1) l1 = l1.next;
+        if (l2) l2 = l2.next;
+    }
+
+    return res.next;
+};
+
+// Time complexity:
+The time complexity is O(max(m, n)), where:
+m is the length of the first linked list (l1).
+n is the length of the second linked list (l2).
+
+// Space complexity:
+The space complexity is also O(max(m, n)) because:
+A new linked list is created to store the result. In the worst case, it will have one more node 
+than the longer of the two input lists (if there’s a final carry).
