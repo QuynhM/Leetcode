@@ -1,0 +1,28 @@
+class Solution:
+    def isBalanced(self, root: Optional[TreeNode]) -> bool:
+        
+        # Define a helper function `dfs` to perform depth-first search on the tree.
+        def dfs(root):
+            # If the current node is None (base case for leaf nodes),
+            # return [True, 0] indicating it is balanced with a height of 0.
+            if not root:
+                return [True, 0]
+            
+            # Recursively call dfs on the left subtree.
+            left = dfs(root.left)
+            # Recursively call dfs on the right subtree.
+            right = dfs(root.right)
+
+            # Check if the current node is balanced. It is balanced if:
+            # 1. Both the left and right subtrees are balanced (left[0] and right[0] are True).
+            # 2. The height difference between the left and right subtrees is at most 1.
+            balanced = (left[0] and right[0] and abs(left[1] - right[1]) <= 1)  # True / False
+
+            # Return an array where:
+            # - The first element is whether the subtree rooted at `root` is balanced.
+            # - The second element is the height of the subtree, which is 1 + the maximum height of the left or right subtree.
+            return [balanced, 1 + max(left[1], right[1])]
+
+        # Call the helper function on the root node and return the first element of the result,
+        # which tells us if the entire tree is balanced.
+        return dfs(root)[0]
