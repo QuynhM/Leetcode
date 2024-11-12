@@ -1,0 +1,43 @@
+from math import inf
+
+class Node:
+    def __init__(self, val, left=None, right=None):
+        self.val = val
+        self.left = left
+        self.right = right
+
+def visible_tree_node(root: Node) -> int:
+    def dfs(root, max_sofar):
+        if not root:
+            return 0
+
+        total = 0
+        if root.val >= max_sofar:
+            total += 1
+
+        # max_sofar for child node is the larger of previous max and 
+        # current node val
+        total += dfs(root.left, max(max_sofar, root.val))
+        total += dfs(root.right, max(max_sofar, root.val))
+
+        return total
+        
+      # start max_sofar with smallest number possible so any value 
+      # root has is smaller than it
+    return dfs(root, 0)
+
+# Example tree
+#    1
+#   / \
+#  2   3
+# /
+#4
+
+root = Node(5)
+root.left = Node(4)
+root.right = Node(6)
+root.left.left = Node(3)
+root.left.right= Node(8)
+
+visible = visible_tree_node(root)
+print("Maximum depth (in terms of edges):", visible)
