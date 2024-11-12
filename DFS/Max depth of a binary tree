@@ -1,0 +1,42 @@
+class Node:
+    def __init__(self, val, left=None, right=None):
+        self.val = val
+        self.left = left
+        self.right = right
+
+def tree_max_depth(root: Node) -> int:
+    # If the tree is empty (no root), return 0 (no edges)
+    if not root:
+        return 0
+
+    def dfs(node):
+        # If node is None, return -1 (no edges to count for null nodes)
+        if not node:
+            return -1
+
+        # Recursively get the max depth of left and right subtrees
+        left_depth = dfs(node.left)
+        right_depth = dfs(node.right)
+        print("L:",left_depth)
+        print("R:",right_depth)
+
+        # Return the max depth + 1 (to count the current edge)
+        return max(left_depth, right_depth) + 1
+
+    # Start DFS traversal from the root
+    return dfs(root)
+
+# Example tree
+#    1
+#   / \
+#  2   3
+# /
+#4
+
+root = Node(1)
+root.left = Node(2)
+root.right = Node(3)
+root.left.left = Node(4)
+
+max_depth = tree_max_depth(root)
+print("Maximum depth (in terms of edges):", max_depth)
