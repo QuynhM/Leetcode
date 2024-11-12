@@ -19,7 +19,7 @@ class Solution:
             balanced = (left[0] and right[0] and abs(left[1] - right[1]) <= 1)  # True / False
 
             # Return an array where:
-            # - The first element is whether the subtree rooted at `root` is balanced.
+            # - The first element is whether the subtree rooted at `root` is balanced. True / False
             # - The second element is the height of the subtree, which is 1 + the maximum height of the left or right subtree.
             return [balanced, 1 + max(left[1], right[1])]
 
