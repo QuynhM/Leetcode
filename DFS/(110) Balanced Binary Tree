@@ -26,3 +26,27 @@ class Solution:
         # Call the helper function on the root node and return the first element of the result,
         # which tells us if the entire tree is balanced.
         return dfs(root)[0]
+
+
+
+# 2
+        balance = [True]
+
+        def height(root):
+            if not root:
+                return 0
+            
+            left_height = height(root.left)
+            right_height = height(root.right)
+
+            if abs(left_height - right_height) > 1:
+                balance[0] = False
+                return 0
+            
+            return 1 + max(left_height, right_height)
+        
+        height(root)
+        return balance[0]
+
+    # Time: O(n)
+    # Time: o(h) where h is height of the tree, bc this it DFS
