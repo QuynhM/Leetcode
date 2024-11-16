@@ -1,0 +1,21 @@
+from typing import List
+
+def groupAnagrams(strs: List[str]) -> List[List[str]]:
+    hashmap = {}  # Dictionary to group anagrams
+
+    for word in strs:
+        # Generate a key by sorting the characters
+        key = ''.join(sorted(word))
+        
+        # If the key doesn't exist, initialize it as an empty list
+        if key not in hashmap:
+            hashmap[key] = []
+        
+        # Add the word to the corresponding group
+        hashmap[key].append(word)
+
+    # Return the grouped anagrams as a list of lists
+    return list(hashmap.values())
+
+strs = ["eat", "tea", "tan", "ate", "nat", "bat"]
+print(groupAnagrams(strs))
