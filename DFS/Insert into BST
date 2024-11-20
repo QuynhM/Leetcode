@@ -1,0 +1,13 @@
+def insert_bst(bst: Node, val: int) -> Node:
+    if bst is None:
+        return Node(val)
+    
+    # If the value is smaller than the current node, insert it into the left subtree
+    if val < bst.val:
+        bst.left = insert_bst(bst.left, val)
+    
+    # If the value is larger than the current node, insert it into the right subtree
+    elif val > bst.val:
+        bst.right = insert_bst(bst.right, val)
+           
+    return bst
