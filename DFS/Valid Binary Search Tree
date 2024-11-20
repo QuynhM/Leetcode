@@ -1,0 +1,15 @@
+def valid_bst(root: Node) -> bool:
+    def helper(node, min_val, max_val):
+        if not node:
+            return True
+        
+        if not (min_val < node.val < max_val):
+            return False
+        
+        left = helper(node.left, min_val, node.val)
+        right = helper(node.right, node.val, max_val)
+           
+        # Return True only if both left and right subtrees are valid
+        return left and right
+    
+    return helper(root, float('-inf'), float('inf'))
