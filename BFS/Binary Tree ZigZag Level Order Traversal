@@ -1,0 +1,27 @@
+def zig_zag_traversal(root: Node) -> List[List[int]]:
+    res = []
+    
+    queue = deque([root])
+    
+    left_to_right = True
+    
+    while queue:
+        qLen = len(queue)
+        level = deque()  # Use deque for level
+        
+        for i in range(qLen):
+            node = queue.popleft()
+            
+            if left_to_right:
+                level.append(node.val)
+            else: 
+                level.appendleft(node.val)
+            
+            for child in [node.left, node.right]:
+                if child is not None:
+                    queue.append(child)
+                    
+        res.append(level)
+        left_to_right = not left_to_right
+    
+    return res
