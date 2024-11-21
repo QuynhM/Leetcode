@@ -1,0 +1,40 @@
+# 1
+def binary_tree_right_side_view(root: Node) -> List[int]:
+    res = []
+    
+    queue = deque([root])
+    
+    while queue:
+        n = len(queue)
+        
+        for i in range(n):
+            node = queue.popleft()
+            
+            if i == n - 1: # which mean the last node in current queue
+                res.append(node.val)
+            
+            if node.left:
+                queue.append(node.left)
+            if node.right:
+                queue.append(node.right)
+            
+    return res
+
+
+# 2
+def binary_tree_right_side_view(root: Node) -> List[int]:
+    res = []
+    
+    queue = deque([root])
+    
+    while queue:
+        n = len(queue)
+        res.append(queue[n-1].val)
+
+        for i in range(n):
+            node = queue.popleft()
+            for child in [node.left, node.right]:
+                if child is not None:
+                    queue.append(child)
+            
+    return res
