@@ -1,0 +1,24 @@
+def level_order_traversal(root: Node) -> List[List[int]]:
+    res = []
+    
+    queue = deque([root]) # Initialize the deque with the root => ([1])
+    
+    while queue:
+        qLen = len(queue) # qLen = 1 (only 1 node, the root is in the queue)
+        level =[]
+        
+        for i in range(qLen):
+            node = queue.popleft() # remove 1 from the queue
+            level.append(node.val) # add 1 to level => level = [1]
+            
+            # Process Children of node 1:
+            for child in [node.left, node.right]:
+                if child is not None:
+                    queue.append(child)
+                    # add 2 (node.left) to the queue
+                    # add 2 (node.right) to the queue
+                    # queue = deque([2,3])
+            
+        res.append(level) # Add level to res => res = [[1]]
+        
+    return res
