@@ -1,0 +1,8 @@
+def isPalindrome(self, s: str) -> bool:
+        trim_s = ""
+        for char in s:
+            if char.isalnum():
+                trim_s += char.lower()
+
+        print(trim_s)
+        return trim_s == trim_s[::-1]
