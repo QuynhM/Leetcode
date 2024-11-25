@@ -1,0 +1,16 @@
+def isValid(self, s: str) -> bool:
+        if len(s) % 2 != 0:
+            return False
+        
+        close = []
+        pairs = {"(": ")", "[": "]", "{": "}"}
+
+        for char in s:
+            if char in pairs:
+                close.append(pairs[char])
+            else:
+                # if not close: close is empty thats mean we start with close first -> false
+                # close.pop() != char: last close we add in "close" is not same with char-> ko dung thu tu 
+                if not close or close.pop() != char:
+                    return False
+        return len(close) == 0
