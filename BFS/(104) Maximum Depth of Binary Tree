@@ -1,5 +1,4 @@
 def maxDepth(self, root: Optional[TreeNode]) -> int:
-    ### BFS
         if not root:
             return 0
         
