@@ -10,4 +10,3 @@ def hasCycle(self, head: Optional[ListNode]) -> bool:
                 return True
 
         return False
-
