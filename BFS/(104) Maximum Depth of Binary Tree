@@ -15,3 +15,4 @@ def maxDepth(self, root: Optional[TreeNode]) -> int:
                     if child is not None:
                         queue.append(child)
         return depth
+
