@@ -1,0 +1,32 @@
+def generate_tree(letter, levels):
+    if levels < 1:
+      print("We don't have any Christmas tree for you!!! ~")
+      return
+  
+    
+    # level 1 will end with 3 letters
+    # level 2 will end with 5 letters
+    # level 3 will end with 7 letters
+    # we know the last line of last level => space for each line
+    
+    # Determine the total width of the tree based on levels (max width is 2*levels - 1) ex: level = 4 => max = 4 + (4 + 1) = 4 * 2 + 1 = 9
+    max_width = 2 * levels + 1
+
+    for i in range(1, levels + 1):
+      lines = i + 1
+      
+      for j in range(lines):
+          # Calculate the number of letters for each line
+          letter_count = 2 * j + 1
+          
+          # Calculate spaces to center the letters
+          spaces = ' ' * ((max_width - letter_count) // 2)
+          
+          print(spaces + letter * letter_count)
+    
+    
+# Example usage:
+letter = "Q"
+levels = 3
+generate_tree(letter, levels)
+
