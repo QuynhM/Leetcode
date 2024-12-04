@@ -1,0 +1,53 @@
+import time, os
+from IPython.display import clear_output
+
+def xmax_tree(char, n_levels, push):
+    """
+    char: a unit of a tree. Can have length >= 1
+    n_levels: number of levels of the tree
+    push: number of spaces to push the tree to the right
+
+    --return: a string of the tree. Print it to see the tree
+    """
+    output = ""
+    max_row = 2 * n_levels + 1
+    for level in range(1, n_levels + 1):
+        for row in range(1, level + 2):
+            num_char = row * 2 - 1
+            num_space = (max_row - num_char) / 2 
+            num_space *= len(char)
+            output+= " " * int(num_space + push) + char * num_char + "\n"
+
+    #Tree trunk
+    for i in range(3):
+        num_char = 1
+        num_space = (max_row - num_char) / 2 
+        num_space *= len(char)
+        output+= " " * int(num_space + push) + char * num_char + "\n"
+
+    return output
+
+def run_effect(char, n_levels, push_range, time_interval, effect, bounce):
+    """ 
+    char, n_levels: see xmax_tree
+    time_interval: miliseconds per push
+    push_range: pair min max
+    effect: ltr, rtl
+    bounce: number of bounces
+    --return: print the tree with the effect
+    """
+    switch = False
+    for i in range(bounce):
+        for i in range(push_range[0], push_range[1]):
+            if (effect == "ltr") != switch:
+                output = xmax_tree(char, n_levels, i)
+            else:
+                output = xmax_tree(char, n_levels, push_range[1] - i)
+
+            clear_output(wait=True)
+            print(output)
+            time.sleep(time_interval/1000)
+        switch = not switch
+
+run_effect(char = "QQQ", n_levels = 3, push_range = [0, 70], time_interval = 40, effect = "rtl", bounce = 3)
+# print(xmax_tree(char = "aa", n_levels = 3, push = 5))
