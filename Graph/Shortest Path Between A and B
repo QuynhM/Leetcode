@@ -1,0 +1,36 @@
+from typing import List
+from collections import deque
+
+def shortest_path(graph: List[List[int]], a: int, b: int) -> int:
+    # Helper function to retrieve neighbors of a node
+    def get_neighbors(node):
+        return graph[node]
+    
+    def bfs(root, target):
+        queue = deque([root])
+        visited = set([root])
+        level = 0
+        
+        while len(queue) > 0:
+            n = len(queue)
+            for i in range(n):
+                node = queue.popleft()
+                if node == target:
+                    return level
+                # Explore all neighbors of the current node
+                for neighbor in get_neighbors(node):
+                    # Skip neighbors that have already been visited
+                    if neighbor in visited:
+                        continue
+                    
+                    # Add unvisited neighbors to the queue and mark them as visited
+                    queue.append(neighbor)
+                    visited.add(neighbor)
+                    
+            level += 1
+            
+        return level
+        
+    return bfs(a,b)
+        
+    return bfs(a,b)
